@@ -8,12 +8,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public boolean create(Employee entity) {
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO employees(`employee_name`, `job`, `commission`, `department_number`, `manager`, `salary`, `hiredate`) " +
+                                                                "VALUES (?,?,?,?,?,?,?)");
+            pstmt.setString(1, entity.getEmployee_name());
+            pstmt.setString(2, entity.getJob());
+            pstmt.setInt(3, entity.getCommission());
+            pstmt.setInt(4, entity.getDepartment_number());
+            pstmt.setInt(5, entity.getManager());
+            pstmt.setInt(6, entity.getSalary());
+            pstmt.setDate(7, new Date(2022, 1, 1));
+
+            pstmt.execute();
+
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Something wrong with database");
+            e.printStackTrace();
+        }
+
         return false;
     }
 
