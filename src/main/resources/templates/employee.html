@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>employee</title>
+</head>
+<body>
+
+    <p>id:<span th:text="${employee.getId()}"></span></p>
+    <p>Name: <span th:text="${employee.getEmployee_name()}"></span></p>
+    <p>Job: <span th:text="${employee.getJob()}"></span></p>
+    <p>Commission: <span th:text="${employee.getCommission()}"></span></p>
+    <p>Department number: <span th:text="${employee.getDepartment_number()}"></span></p>
+    <p>Manger: <span th:text="${employee.getManager()}"></span></p>
+    <p>Salary: <span th:text="${employee.getSalary()}"></span></p>
+    <p>Hire date: <span th:text="${employee.getHireDate()}"></span></p>
+
+</body>
+</html>
