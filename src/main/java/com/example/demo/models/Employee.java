@@ -18,6 +18,8 @@ public class Employee {
         this.job = job;
     }
 
+    public Employee() {}
+
     public int getId() {
         return id;
     }
@@ -48,5 +50,37 @@ public class Employee {
 
     public String getJob() {
         return job;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCommission(int commission) {
+        this.commission = commission;
+    }
+
+    public void setDepartment_number(int department_number) {
+        this.department_number = department_number;
+    }
+
+    public void setManager(int manager) {
+        this.manager = manager;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 }
