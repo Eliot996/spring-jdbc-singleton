@@ -19,6 +19,36 @@ public class EmployeeRepository implements IRepository<Employee> {
 
     @Override
     public Employee getSingleEntityById(int id) {
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM employees WHERE id = ?");
+            pstmt.setInt(1, id);
+
+            ResultSet rs = pstmt.executeQuery();
+
+
+            while(rs.next()){
+                //Indsætte i en liste
+                Employee temp = new Employee(
+                        rs.getInt("id"),
+                        rs.getInt("commission"),
+                        rs.getInt("department_number"),
+                        rs.getInt("manager"),
+                        rs.getInt("salary"),
+                        rs.getDate("hiredate"),
+                        rs.getString("employee_name"),
+                        rs.getString("job")
+                );
+                return temp;
+            }
+
+            return null;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Something wrong with database");
+            e.printStackTrace();
+        }
         return null;
     }
 
