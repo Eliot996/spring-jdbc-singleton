@@ -2,7 +2,7 @@ package com.example.demo.repositories;
 
 import java.util.List;
 
-public interface CRUDInterface <T>{
+public interface IRepository<T>{
     //Create
     public boolean create(T entity);
 
