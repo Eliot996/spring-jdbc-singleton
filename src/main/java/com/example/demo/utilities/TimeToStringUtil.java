@@ -1,6 +1,6 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
-public class TimeToStringService {
+public class TimeToStringUtil {
     public String convert(int time) {
 
         if (time < 0) {

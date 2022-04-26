@@ -1,12 +1,12 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DepartmentValidationServiceTest {
+class DepartmentValidationUtilTest {
 
-    DepartmentValidationService DVS = new DepartmentValidationService();
+    DepartmentValidationUtil DVS = new DepartmentValidationUtil();
 
     @Test
     void validateDepartmentNumber_lessThan0() {

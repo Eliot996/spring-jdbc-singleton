@@ -1,8 +1,8 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
 import com.example.demo.models.Employee;
 
-public class EmployeeValidationService {
+public class EmployeeValidationUtil {
 
     public boolean isCommissionValid(Employee e) {
         if (e.getSalary() < 0) {

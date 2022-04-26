@@ -1,14 +1,14 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
 import com.example.demo.models.Employee;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class EmployeeValidationServiceTest {
+class EmployeeValidationUtilTest {
 
     Employee e = new Employee();
-    EmployeeValidationService EVS = new EmployeeValidationService();
+    EmployeeValidationUtil EVS = new EmployeeValidationUtil();
 
     @Test
     void isCommissionValid_invalidSalary() {

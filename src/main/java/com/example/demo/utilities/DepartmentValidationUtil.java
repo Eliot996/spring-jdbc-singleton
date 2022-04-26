@@ -1,6 +1,6 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
-public class DepartmentValidationService {
+public class DepartmentValidationUtil {
 
     public boolean validateDepartmentNumber (int number) {
 

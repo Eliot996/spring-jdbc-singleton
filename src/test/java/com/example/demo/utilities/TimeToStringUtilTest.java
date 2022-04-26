@@ -1,12 +1,12 @@
-package com.example.demo.services;
+package com.example.demo.utilities;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TimeToStringServiceTest {
+class TimeToStringUtilTest {
 
-    TimeToStringService TTS = new TimeToStringService();
+    TimeToStringUtil TTS = new TimeToStringUtil();
 
     @Test
     void convertFor4() {
