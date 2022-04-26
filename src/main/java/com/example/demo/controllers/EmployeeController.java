@@ -27,6 +27,17 @@ public class EmployeeController {
         return "employee";
     }
 
+    @GetMapping("/employee_by_department")
+    public String getEmployee(Model model, @RequestParam String department) {
+
+        EmployeeRepository ER = (EmployeeRepository) employeeRepository;
+
+        System.out.println(ER.getAllEntitiesByDepartment(department));
+
+        model.addAttribute("employees", ER.getAllEntitiesByDepartment(department));
+        return "employees";
+    }
+
     @GetMapping("/create-employee")
     public String getCreateEmployee(Model model) {
 

@@ -108,6 +108,45 @@ public class EmployeeRepository implements IRepository<Employee> {
         return null;
     }
 
+    public List<Employee> getAllEntitiesByDepartment(String deparment) {
+        try {
+            Connection conn = DatabaseConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(
+                    "SELECT employees.* \n" +
+                    "FROM employees\n" +
+                    "INNER JOIN departments ON employees.department_number = departments.department_number\n" +
+                    "WHERE departments.department_name = ?");
+
+            pstmt.setString(1, deparment);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            ArrayList<Employee> allEmployees = new ArrayList<>();
+            while(rs.next()){
+                //Indsætte i en liste
+                Employee temp = new Employee(
+                        rs.getInt("id"),
+                        rs.getInt("commission"),
+                        rs.getInt("department_number"),
+                        rs.getInt("manager"),
+                        rs.getInt("salary"),
+                        rs.getDate("hiredate"),
+                        rs.getString("employee_name"),
+                        rs.getString("job")
+                );
+                allEmployees.add(temp);
+            }
+
+            return allEmployees;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Something wrong with database");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public boolean update(Employee entity) {
         return false;
