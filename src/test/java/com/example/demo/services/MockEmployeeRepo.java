@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 public class MockEmployeeRepo implements IRepository<Employee> {
+    private final ArrayList<Employee> list = new ArrayList<>();
     @Override
     public boolean create(Employee entity) {
-        return false;
+        list.add(entity);
+        return true;
     }
 
     @Override
@@ -20,14 +22,6 @@ public class MockEmployeeRepo implements IRepository<Employee> {
 
     @Override
     public List<Employee> getAllEntities() {
-        ArrayList<Employee> list = new ArrayList<>();
-
-        list.add(new Employee(0, 0, 0, 0, 8, new Date(), "name", "job"));
-        list.add(new Employee(1, 0, 0, 0, 9, new Date(), "name", "job"));
-        list.add(new Employee(2, 0, 0, 0, 10, new Date(), "name", "job"));
-        list.add(new Employee(3, 0, 0, 0, 11, new Date(), "name", "job"));
-        list.add(new Employee(4, 0, 0, 0, 12, new Date(), "name", "job"));
-
         return list;
     }
 
