@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create employee</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/create-employee}" th:object="${employee}" method="post">
+
+    <div class="container">
+        <label><b>Employee</b></label>
+        <input type="text" placeholder="employee name" th:field="*{employee_name}">
+        <br>
+
+        <label><b>Job</b></label>
+        <input type="text" placeholder="job" th:field="*{job}">
+        <br>
+
+        <label><b>Commision</b></label>
+        <input type="text" placeholder="commission" th:field="*{commission}">
+        <br>
+
+        <label><b>Deparment number</b></label>
+        <input type="text" placeholder="department_number" th:field="*{department_number}">
+        <br>
+
+        <label><b>Manager</b></label>
+        <input type="text" placeholder="manager" th:field="*{manager}">
+        <br>
+
+        <label><b>Salary</b></label>
+        <input type="text" placeholder="salary" th:field="*{salary}">
+        <br>
+
+        <button type="submit">create employee</button>
+    </div>
+</form>
+
+</body>
+</html>
