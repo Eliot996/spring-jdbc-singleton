@@ -57,4 +57,16 @@ class DepartmentServiceTest {
         // Assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    void getDepartmentNumberWithHighestAverageSalary() {
+        // Arrange
+        int expected = 50;
+
+        // Act
+        int actual = DS.getDepartmentNumberWithHighestAverageSalary();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 }
