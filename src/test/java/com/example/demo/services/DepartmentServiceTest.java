@@ -3,7 +3,8 @@ package com.example.demo.services;
 import com.example.demo.models.Department;
 import com.example.demo.models.Employee;
 import com.example.demo.repositories.IRepository;
-import org.junit.Before;
+import com.example.demo.repositories.MockDepartmentRepo;
+import com.example.demo.repositories.MockEmployeeRepo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
