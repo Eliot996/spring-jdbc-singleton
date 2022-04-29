@@ -30,8 +30,6 @@ public class DepartmentService {
 
     public int getDepartmentNumberWithMostEmployees() {
         List<Employee> list = employeeRepo.getAllEntities();
-
-        // make into tuples
         ArrayList<Pair<Integer, Integer>> departments = new ArrayList<>();
 
         int dep_num;
@@ -62,36 +60,38 @@ public class DepartmentService {
 
     public int getDepartmentNumberWithHighestAverageSalary() {
         List<Employee> list = employeeRepo.getAllEntities();
-        ArrayList<Integer> departments = new ArrayList<>();
-        ArrayList<Integer> amount = new ArrayList<>();
-        ArrayList<Double> salary = new ArrayList<>();
+        ArrayList<Triplet<Integer, Integer, Integer>> departments = new ArrayList<>();
 
         int dep_num;
+        int index;
+        Triplet<Integer, Integer, Integer> tempTriplet;
+
         for (Employee e : list) {
             dep_num = e.getDepartment_number();
-            if (departments.contains(dep_num)) {
-                amount.set(departments.indexOf(dep_num), amount.get(departments.indexOf(dep_num)) + 1);
-                salary.set(departments.indexOf(dep_num), salary.get(departments.indexOf(dep_num)) + e.getSalary());
-            } else {
-                departments.add(dep_num);
-                amount.add(1);
-                salary.add((double) e.getSalary());
-            }
-        }
+            index = containsForTriplets(departments, dep_num);
 
-        for (int i = 0; i < departments.size(); i++) {
-            salary.set(i, salary.get(i) / amount.get(i));
+            if (index != -1) {
+                tempTriplet = departments.get(index);
+                tempTriplet.setAt1(tempTriplet.getValue1() + 1);
+                tempTriplet.setAt2(tempTriplet.getValue1() + e.getSalary());
+            } else {
+                departments.add(new Triplet<>(dep_num, 1, e.getSalary()));
+            }
         }
 
         double highestAverageSalary = 0;
+        double tempAverageSalary = 0;
+        tempTriplet = new Triplet<>(0,0,0);
 
-        for (double i : salary) {
-            if (i > highestAverageSalary) {
-                highestAverageSalary = i;
+        for (Triplet<Integer, Integer, Integer> t : departments) {
+            tempAverageSalary = (double) t.getValue2() / (double) t.getValue1();
+            if (highestAverageSalary < tempAverageSalary) {
+                highestAverageSalary = tempAverageSalary;
+                tempTriplet = t;
             }
         }
 
-        return departments.get(salary.indexOf(highestAverageSalary));
+        return tempTriplet.getValue0();
     }
 
     public void setRepo(IRepository<Department> repo) {
