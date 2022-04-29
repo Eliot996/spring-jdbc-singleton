@@ -51,28 +51,21 @@ public class EmployeeRepository implements IRepository<Employee> {
             ResultSet rs = pstmt.executeQuery();
 
 
-            while(rs.next()){
-                //Indsætte i en liste
-                Employee temp = new Employee(
-                        rs.getInt("id"),
-                        rs.getInt("commission"),
-                        rs.getInt("department_number"),
-                        rs.getInt("manager"),
-                        rs.getInt("salary"),
-                        rs.getDate("hiredate"),
-                        rs.getString("employee_name"),
-                        rs.getString("job")
-                );
-                return temp;
-            }
+            List<Employee> employeeList = extractEmployees(rs);
 
-            return null;
+            if (employeeList.size() > 1) {
+                throw new IllegalArgumentException("More than one employee was found!");
+            } else if (employeeList.size() == 1) {
+                return employeeList.get(0);
+            }
         }
         catch(SQLException e){
             e.printStackTrace();
             System.out.println("Something wrong with database");
             e.printStackTrace();
         }
+
+        // if it fails or finds nothing return null
         return null;
     }
 
@@ -84,23 +77,7 @@ public class EmployeeRepository implements IRepository<Employee> {
 
             ResultSet rs = pstmt.executeQuery();
 
-            ArrayList<Employee> allEmployees = new ArrayList<>();
-            while(rs.next()){
-                //Indsætte i en liste
-                Employee temp = new Employee(
-                        rs.getInt("id"),
-                        rs.getInt("commission"),
-                        rs.getInt("department_number"),
-                        rs.getInt("manager"),
-                        rs.getInt("salary"),
-                        rs.getDate("hiredate"),
-                        rs.getString("employee_name"),
-                        rs.getString("job")
-                );
-                allEmployees.add(temp);
-            }
-
-            return allEmployees;
+            return extractEmployees(rs);
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -123,23 +100,7 @@ public class EmployeeRepository implements IRepository<Employee> {
 
             ResultSet rs = pstmt.executeQuery();
 
-            ArrayList<Employee> allEmployees = new ArrayList<>();
-            while(rs.next()){
-                //Indsætte i en liste
-                Employee temp = new Employee(
-                        rs.getInt("id"),
-                        rs.getInt("commission"),
-                        rs.getInt("department_number"),
-                        rs.getInt("manager"),
-                        rs.getInt("salary"),
-                        rs.getDate("hiredate"),
-                        rs.getString("employee_name"),
-                        rs.getString("job")
-                );
-                allEmployees.add(temp);
-            }
-
-            return allEmployees;
+            return extractEmployees(rs);
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -157,5 +118,25 @@ public class EmployeeRepository implements IRepository<Employee> {
     @Override
     public boolean deleteById(int id) {
         return false;
+    }
+
+    private ArrayList<Employee> extractEmployees(ResultSet rs) throws SQLException {
+        ArrayList<Employee> allEmployees = new ArrayList<>();
+        while(rs.next()){
+            //Indsætte i en liste
+            Employee temp = new Employee(
+                    rs.getInt("id"),
+                    rs.getInt("commission"),
+                    rs.getInt("department_number"),
+                    rs.getInt("manager"),
+                    rs.getInt("salary"),
+                    rs.getDate("hiredate"),
+                    rs.getString("employee_name"),
+                    rs.getString("job")
+            );
+            allEmployees.add(temp);
+        }
+
+        return allEmployees;
     }
 }
