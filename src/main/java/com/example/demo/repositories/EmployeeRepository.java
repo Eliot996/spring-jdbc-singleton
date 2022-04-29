@@ -110,7 +110,7 @@ public class EmployeeRepository implements IRepository<Employee> {
         return null;
     }
 
-    public List<Employee> getAllEntitiesByDepartment(String deparment) {
+    public List<Employee> getAllEntitiesByDepartment(String department) {
         try {
             Connection conn = DatabaseConnectionManager.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(
@@ -119,7 +119,7 @@ public class EmployeeRepository implements IRepository<Employee> {
                     "INNER JOIN departments ON employees.department_number = departments.department_number\n" +
                     "WHERE departments.department_name = ?");
 
-            pstmt.setString(1, deparment);
+            pstmt.setString(1, department);
 
             ResultSet rs = pstmt.executeQuery();
 
